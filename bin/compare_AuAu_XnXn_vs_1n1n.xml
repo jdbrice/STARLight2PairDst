@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<Data name="XnXn" url="AuAu_starlight.root" /> 
+	<Data name="1n1n" url="AuAu2001n1n_starlight.root" /> 
+
+	<Transform>
+		<Normalize save_as="XnXn_snpt20" name="XnXn/pT2_m0" x1="0.002" x2="0.007"  />
+		<Normalize save_as="1n1n_snpt20" name="1n1n/pT2_m0" x1="0.002" x2="0.007"  />
+
+		<Normalize save_as="XnXn_snaco0" name="XnXn/aco_m0" x1="0.04" x2="0.1"  />
+		<Normalize save_as="1n1n_snaco0" name="1n1n/aco_m0" x1="0.04" x2="0.1"  />
+	</Transform>
+
+
+	<Plot>
+		<Histo name="XnXn_snpt20" draw="h" line-color="#F00" x-range="0, 0.03" logy="1" />
+		<Histo name="1n1n_snpt20" draw="same h" line-color="#000" />
+
+		<Export url="Xn_vs_1n_SL_pT2_m0.pdf" />
+	</Plot>
+
+
+	<Plot>
+		<Histo name="XnXn_snaco0" draw="h" line-color="#F00" x-range="0, 0.2" logy="1" />
+		<Histo name="1n1n_snaco0" draw="same h" line-color="#000" />
+
+		<Export url="Xn_vs_1n_SL_aco_m0.pdf" />
+	</Plot>
+
+</config>

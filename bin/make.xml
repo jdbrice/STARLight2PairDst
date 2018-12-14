@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<mod>AuAu</mod>
+	<Task name="PairDstMaker" type="PairDstMaker" config="" nodePath="PairDstMaker"  />
+	
+	<PairDstMaker>
+		<input>
+			<TFile url="test.root" />
+			<TxtFile url="../../data/rawSTARLight/slight.{mod}.out" />
+		</input>
+
+		<output>
+			<TFile url="slim_pair_dst_STARLight_{mod}.root" />
+		</output>
+	</PairDstMaker>
+</config>

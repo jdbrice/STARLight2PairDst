@@ -1,0 +1,6 @@
+.DS_Store
+.sconsign.dblite
+*.o
+*.root
+*.pdf
+*.pcm

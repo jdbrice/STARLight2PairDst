@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+	<mod>AuAu</mod>
+	<Data name="data" url="../../FemtoPairAnalysis/bin/{mod}.root" />
+	<Data name="fdata" url="../../FemtoPairAnalysis/bin/fit_{mod}.root" />
+	<Data name="sim" url="{mod}_starlight.root" /> 
+
+
+	<TCanvas w="1200" h="400" />
+	<Margins>0.03, 0.05, 0.18, 0.08</Margins>
+
+	<bins>
+		<mass width="0.05" min="0" max="4" />
+		<aco min="0" max="1.0" width="0.01" />
+		<asym min="0" max="1.0" width="0.001" />
+	</bins>
+
+	<Transform>
+
+		<Projection axis="y" save_as="hpt0" name="ulsid2" x1="0.4" x2="0.76" />
+		<Projection axis="y" save_as="hpt1" name="ulsid2" x1="0.76" x2="1.2" />
+		<Projection axis="y" save_as="hpt2" name="ulsid2" x1="1.2" x2="2.6" />
+
+		<Projection axis="y" save_as="hrap0" name="data/rapid2" x1="0.4" x2="0.76" />
+		<Projection axis="y" save_as="hrap1" name="data/rapid2" x1="0.76" x2="1.2" />
+		<Projection axis="y" save_as="hrap2" name="data/rapid2" x1="1.2" x2="2.6" />
+
+		<Projection axis="y" save_as="hpt20" name="pt2id2" x1="0.4" x2="0.76" />
+		<Projection axis="y" save_as="hpt21" name="pt2id2" x1="0.76" x2="1.2" />
+		<Projection axis="y" save_as="hpt22" name="pt2id2" x1="1.2" x2="2.6" />
+
+		<Projection axis="y" save_as="haco0" name="aco" x1="0.4" x2="0.76" />
+		<Projection axis="y" save_as="haco1" name="aco" x1="0.76" x2="1.2" />
+		<Projection axis="y" save_as="haco2" name="aco" x1="1.2" x2="2.6" />
+
+		<Projection axis="x" save_as="hmass" name="data/ulsid2" y1="0" y2="0.15"/>
+	</Transform>
+
+	<Transform>
+		<Normalize save_as="hnrap0" name="hrap0" />
+		<Normalize save_as="hnrap1" name="hrap1" />
+		<Normalize save_as="hnrap2" name="hrap2" />
+
+		<Normalize save_as="snrap0" name="sim/y_m0" />
+		<Normalize save_as="snrap1" name="sim/y_m1" />
+		<Normalize save_as="snrap2" name="sim/y_m2" />
+
+		<Scale name="hnrap1" factor="0.1" />
+		<Scale name="snrap1" factor="0.1" />
+		
+		<Scale name="hnrap2" factor="0.01" />
+		<Scale name="snrap2" factor="0.01" />
+
+
+		<Normalize save_as="hnpt0" name="hpt0" x1="0.03" x2="0.1" />
+		<Normalize save_as="hnpt1" name="hpt1" x1="0.03" x2="0.1" />
+		<Normalize save_as="hnpt2" name="hpt2" x1="0.03" x2="0.1" />
+
+		<Normalize save_as="snpt0" name="sim/pT_m0" x1="0.03" x2="0.1" />
+		<Normalize save_as="snpt1" name="sim/pT_m1" x1="0.03" x2="0.1" />
+		<Normalize save_as="snpt2" name="sim/pT_m2" x1="0.03" x2="0.1" />
+
+		<Scale name="hnpt0" factor="100" />
+		<Scale name="snpt0" factor="100" />
+
+		<Scale name="hnpt1" factor="1" />
+		<Scale name="snpt1" factor="1" />
+		
+		<Scale name="hnpt2" factor="0.1" />
+		<Scale name="snpt2" factor="0.1" />
+
+		<!-- Acoplanarity -->
+		<Rebin save_as="haco0rb" name="haco0" bins_x="bins.aco" />
+		<Rebin save_as="haco1rb" name="haco1" bins_x="bins.aco" />
+		<Rebin save_as="haco2rb" name="haco2" bins_x="bins.aco" />
+
+		<Normalize save_as="hnaco0" name="haco0rb" x1="0.03" x2="0.1" />
+		<Normalize save_as="hnaco1" name="haco1rb" x1="0.03" x2="0.08" />
+		<Normalize save_as="hnaco2" name="haco2rb" x1="0.01" x2="0.03" />
+
+
+		<Rebin save_as="saco0rb" name="sim/aco_m0" bins_x="bins.aco" />
+		<Rebin save_as="saco1rb" name="sim/aco_m1" bins_x="bins.aco" />
+		<Rebin save_as="saco2rb" name="sim/aco_m2" bins_x="bins.aco" />
+
+		<Normalize save_as="snaco0" name="saco0rb" x1="0.03" x2="0.1" />
+		<Normalize save_as="snaco1" name="saco1rb" x1="0.03" x2="0.08" />
+		<Normalize save_as="snaco2" name="saco2rb" x1="0.01" x2="0.03" />
+
+		<Scale name="hnaco0" factor="100" />
+		<Scale name="snaco0" factor="100" />
+
+		<Scale name="hnaco1" factor="1" />
+		<Scale name="snaco1" factor="1" />
+		
+		<Scale name="hnaco2" factor="0.01" />
+		<Scale name="snaco2" factor="0.01" />
+
+		<!-- Asymmetry -->
+		<Rebin save_as="hasym0rb" name="hasym0" bins_x="bins.asym" />
+		<Rebin save_as="hasym1rb" name="hasym1" bins_x="bins.asym" />
+		<Rebin save_as="hasym2rb" name="hasym2" bins_x="bins.asym" />
+
+		<Normalize save_as="hnasym0" name="hasym0rb" x1="0.05" x2="0.2" />
+		<Normalize save_as="hnasym1" name="hasym1rb" x1="0.05" x2="0.2" />
+		<Normalize save_as="hnasym2" name="hasym2rb" x1="0.02" x2="0.1" />
+
+
+		<Rebin save_as="sasym0rb" name="sim/asym_m0" bins_x="bins.asym" />
+		<Rebin save_as="sasym1rb" name="sim/asym_m1" bins_x="bins.asym" />
+		<Rebin save_as="sasym2rb" name="sim/asym_m2" bins_x="bins.asym" />
+
+		<Normalize save_as="snasym0" name="sasym0rb" x1="0.05" x2="0.2" />
+		<Normalize save_as="snasym1" name="sasym1rb" x1="0.05" x2="0.2" />
+		<Normalize save_as="snasym2" name="sasym2rb" x1="0.02" x2="0.1" />
+
+		<Scale name="hnasym0" factor="100" />
+		<Scale name="snasym0" factor="100" />
+
+		<Scale name="hnasym1" factor="1" />
+		<Scale name="snasym1" factor="1" />
+		
+		<Scale name="hnasym2" factor="0.001" />
+		<Scale name="snasym2" factor="0.001" />
+
+		<!-- Pt^2 -->
+		<Normalize save_as="hnpt20" name="hpt20" x1="0.002" x2="0.007"  />
+		<Normalize save_as="hnpt21" name="hpt21" x1="0.002" x2="0.007"  />
+		<Normalize save_as="hnpt22" name="hpt22" x1="0.002" x2="0.007"  />
+
+		<Normalize save_as="snpt20" name="sim/pT2_m0" x1="0.002" x2="0.007"  />
+		<Normalize save_as="snpt21" name="sim/pT2_m1" x1="0.002" x2="0.007"  />
+		<Normalize save_as="snpt22" name="sim/pT2_m2" x1="0.002" x2="0.007"  />
+
+		<Scale name="hnpt20" factor="100" />
+		<Scale name="snpt20" factor="100" />
+
+		<Scale name="hnpt21" factor="1" />
+		<Scale name="snpt21" factor="1" />
+		
+		<Scale name="hnpt22" factor="0.01" />
+		<Scale name="snpt22" factor="0.01" />
+
+		<Rebin save_as="hmassrb" name="hmass" bins_x="bins.mass"/>
+		<Rebin save_as="smassrb" name="sim/mass" bins_x="bins.mass"/>
+
+		<Normalize save_as="hnmass" name="hmassrb" x1="0.5" x2="2.6"  />
+		<Normalize save_as="snmass" name="smassrb" x1="0.5" x2="2.6"  />
+
+	</Transform>
+
+	<Transform>
+		<!-- <Clone save_as="hnrap0rb" name="hnrap0" x1="-1.1" x2="1.1" /> -->
+		<Divide save_as="ratio_snrap0" nameA="snrap0" nameB="hnrap0" />
+		<Divide save_as="ratio_snrap1" nameA="snrap1" nameB="hnrap1" />
+		<Divide save_as="ratio_snrap2" nameA="snrap2" nameB="hnrap2" />
+
+		<Divide save_as="ratio_snpt0" nameA="snpt0" nameB="hnpt0" />
+		<Divide save_as="ratio_snpt1" nameA="snpt1" nameB="hnpt1" />
+		<Divide save_as="ratio_snpt2" nameA="snpt2" nameB="hnpt2" />
+
+		<Divide save_as="ratio_snpt20" nameA="snpt20" nameB="hnpt20" />
+		<Divide save_as="ratio_snpt21" nameA="snpt21" nameB="hnpt21" />
+		<Divide save_as="ratio_snpt22" nameA="snpt22" nameB="hnpt22" />
+
+		<Divide save_as="ratio_snaco0" nameA="snaco0" nameB="hnaco0" />
+		<Divide save_as="ratio_snaco1" nameA="snaco1" nameB="hnaco1" />
+		<Divide save_as="ratio_snaco2" nameA="snaco2" nameB="hnaco2" />
+
+		<Divide save_as="ratio_snasym0" nameA="snasym0" nameB="hnasym0" />
+		<Divide save_as="ratio_snasym1" nameA="snasym1" nameB="hnasym1" />
+		<Divide save_as="ratio_snasym2" nameA="snasym2" nameB="hnasym2" />
+
+		<Divide save_as="ratio_mass" nameA="snmass" nameB="hnmass" />
+
+	</Transform>
+
+
+	<Plot>
+		<StatBox v="0" />
+		<Histo name="ratio_snrap0" draw="pe" logy="0" min="0.0" max="2.0" line-color="#000"  xr="-1.1, 1.1" marker-style="8" marker-color="#000" marker-size="2" x-title="Pair Rapidity" y-title="STARLight / data" xtp="24" ytp="24" yto="0.5" ylp="24" xlp="24"/>
+		<Histo name="ratio_snrap1" draw="SAME pe" line-color="#F00" marker-style="8" marker-color="#F00" marker-size="2" />
+		<Histo name="ratio_snrap2" draw="SAME pe" line-color="#00F" marker-style="8" marker-color="#00F" marker-size="2" />
+
+		<TLine p1="-1.2, 1.0" p2="1.2, 1.0" style="2" color="#000"/>
+
+		<Legend border-size="0">
+			<Position pos="bottom hcenter" w="0.6" padding="0, 0, 0.05, 0"/>
+			<Entry name="ratio_snrap0" title="0.4 < M_{ee} < 0.76 " opt="pe" />
+			<Entry name="ratio_snrap1" title="0.76 < M_{ee} < 1.2" opt="pe" />
+			<Entry name="ratio_snrap2" title="1.2 < M_{ee} < 2.6 GeV/c^{2}" opt="pe" />
+
+		</Legend>
+
+
+		<Export url="{mod}_ratio_rap.pdf" />
+	</Plot>
+
+
+	<Plot>
+		<Histo name="ratio_snpt0" draw="pe" logy="0" min="0.0" max="2.0" line-color="#000" xr="0, 0.2" marker-style="8" marker-color="#000" marker-size="2" x-title="Pair Transverse Momentum" y-title="STARLight / data" xtp="24" ytp="24" yto="0.5" ylp="24" xlp="24"/>
+		<Histo name="ratio_snpt1" draw="SAME pe" line-color="#F00" marker-style="8" marker-color="#F00" marker-size="2" />
+		<Histo name="ratio_snpt2" draw="SAME pe" line-color="#00F" marker-style="8" marker-color="#00F" marker-size="2" />
+
+		<TLine p1="0, 1.0" p2="0.2, 1.0" style="2" color="#000"/>
+
+		<Legend border-size="0">
+			<Position pos="top right" w="0.4" padding="0.05, 0.05, 0, 0"/>
+			<Entry name="ratio_snpt0" title="0.4 < M_{ee} < 0.76 " opt="pe" />
+			<Entry name="ratio_snpt1" title="0.76 < M_{ee} < 1.2" opt="pe" />
+			<Entry name="ratio_snpt2" title="1.2 < M_{ee} < 2.6 GeV/c^{2}" opt="pe" />
+
+		</Legend>
+
+
+		<Export url="{mod}_ratio_pt.pdf" />
+	</Plot>
+
+
+	<Plot>
+		<Histo name="ratio_snaco0" draw="pe" logy="0" min="0.0" max="3.0" line-color="#000" xr="0, 0.2" marker-style="8" marker-color="#000" marker-size="2" x-title="Pair Transverse Momentum" y-title="STARLight / data" xtp="24" ytp="24" yto="0.5" ylp="24" xlp="24"/>
+		<Histo name="ratio_snaco1" draw="SAME pe" line-color="#F00" marker-style="8" marker-color="#F00" marker-size="2" />
+		<Histo name="ratio_snaco2" draw="SAME pe" line-color="#00F" marker-style="8" marker-color="#00F" marker-size="2" />
+
+		<TLine p1="0, 1.0" p2="0.2, 1.0" style="2" color="#000"/>
+
+		<Legend border-size="0">
+			<Position pos="top right" w="0.4" padding="0.05, 0.05, 0, 0"/>
+			<Entry name="ratio_snaco0" title="0.4 < M_{ee} < 0.76 " opt="pe" />
+			<Entry name="ratio_snaco1" title="0.76 < M_{ee} < 1.2" opt="pe" />
+			<Entry name="ratio_snaco2" title="1.2 < M_{ee} < 2.6 GeV/c^{2}" opt="pe" />
+
+		</Legend>
+
+
+		<Export url="{mod}_ratio_aco.pdf" />
+	</Plot>
+
+
+	<Plot>
+		<Histo name="ratio_snasym0" draw="pe" logy="0" min="0.0" max="3.0" line-color="#000" xr="0, 0.2" marker-style="8" marker-color="#000" marker-size="2" x-title="Pair Transverse Momentum" y-title="STARLight / data" xtp="24" ytp="24" yto="0.5" ylp="24" xlp="24"/>
+		<Histo name="ratio_snasym1" draw="SAME pe" line-color="#F00" marker-style="8" marker-color="#F00" marker-size="2" />
+		<Histo name="ratio_snasym2" draw="SAME pe" line-color="#00F" marker-style="8" marker-color="#00F" marker-size="2" />
+
+		<TLine p1="0, 1.0" p2="0.2, 1.0" style="2" color="#000"/>
+
+		<Legend border-size="0">
+			<Position pos="top right" w="0.4" padding="0.05, 0.05, 0, 0"/>
+			<Entry name="ratio_snasym0" title="0.4 < M_{ee} < 0.76 " opt="pe" />
+			<Entry name="ratio_snasym1" title="0.76 < M_{ee} < 1.2" opt="pe" />
+			<Entry name="ratio_snasym2" title="1.2 < M_{ee} < 2.6 GeV/c^{2}" opt="pe" />
+
+		</Legend>
+
+
+		<Export url="{mod}_ratio_asym.pdf" />
+	</Plot>
+
+	<Plot>
+		<Histo name="ratio_snpt20" draw="pe" logy="0" min="0.0" max="2.0" line-color="#000" xr="0, 0.03" marker-style="8" marker-color="#000" marker-size="2" x-title="-t #approx p_{T}^{2} (GeV/c)" y-title="STARLight / data" xtp="24" ytp="24" yto="0.5" ylp="24" xlp="24" />
+		<Histo name="ratio_snpt21" draw="SAME pe" line-color="#F00" marker-style="8" marker-color="#F00" marker-size="2" />
+		<!-- <Histo name="ratio_snpt22" draw="SAME pe" line-color="#00F" marker-style="8" marker-color="#00F" marker-size="2" /> -->
+
+		<TLine p1="0, 1.0" p2="0.2, 1.0" style="2" color="#000"/>
+
+		<Legend border-size="0">
+			<Position pos="top right" w="0.4" padding="0.05, 0.05, 0, 0"/>
+			<Entry name="ratio_snpt20" title="0.4 < M_{ee} < 0.76 " opt2="pe" />
+			<Entry name="ratio_snpt21" title="0.76 < M_{ee} < 1.2" opt2="pe" />
+			<!-- <Entry name="ratio_snpt22" title="1.2 < M_{ee} < 2.6 GeV/c^{2}" opt2="pe" /> -->
+
+		</Legend>
+
+
+		<Export url="{mod}_ratio_pt2.pdf" />
+	</Plot>
+
+	<Plot>
+		<Histo name="ratio_mass" draw="pe" logy="0" min="0.0" max="2.0" line-color="#000" xr="0, 3.5" marker-style="8" marker-color="#000" marker-size="2" x-title="M_{ee} (GeV/c^{2})" y-title="STARLight / data" xtp="24" ytp="24" yto="0.5" ylp="24" xlp="24" ylp="24" xlp="24" /> 
+
+		<TLine p1="0, 1.0" p2="3.5, 1.0" style="2" color="#000"/>
+
+
+		<Export url="{mod}_ratio_mass.pdf" />
+	</Plot>
+
+</config>

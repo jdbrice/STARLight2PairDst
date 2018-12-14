@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<Data name="AuAu" url="AuAu_starlight.root" /> 
+	<Data name="Run12UU" url="Run12UU_starlight.root" /> 
+
+	<Transform>
+		<Normalize save_as="AuAu_snpt20" name="AuAu/pT2_m0" x1="0.002" x2="0.007"  />
+		<Normalize save_as="Run12UU_snpt20" name="Run12UU/pT2_m0" x1="0.002" x2="0.007"  />
+
+		<Normalize save_as="AuAu_snaco0" name="AuAu/aco_m0" x1="0.04" x2="0.1"  />
+		<Normalize save_as="Run12UU_snaco0" name="Run12UU/aco_m0" x1="0.04" x2="0.1"  />
+	</Transform>
+
+
+	<Plot>
+		<Histo name="AuAu_snpt20" draw="h" line-color="#F00" x-range="0, 0.03" logy="1" />
+		<Histo name="Run12UU_snpt20" draw="same h" line-color="#000" />
+
+		<Export url="SL_pT2_m0.pdf" />
+	</Plot>
+
+
+	<Plot>
+		<Histo name="AuAu_snaco0" draw="h" line-color="#F00" x-range="0, 0.2" logy="1" />
+		<Histo name="Run12UU_snaco0" draw="same h" line-color="#000" />
+
+		<Export url="SL_aco_m0.pdf" />
+	</Plot>
+
+</config>

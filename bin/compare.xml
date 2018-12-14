@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+	<mod>AuAu</mod>
+	<Log url="log" />
+	<Data name="data" url="../../FemtoPairAnalysis/bin/{mod}.root" />
+	<Data name="fdata" url="../../FemtoPairAnalysis/bin/fit_{mod}.root" />
+	<Data name="sim" url="{mod}_starlight.root" /> 
+
+	<TFile url="{mod}_compare.root" />
+	<title AuAu="Au+Au Run10+11" Run12UU="U+U Run12" />
+
+
+	<TCanvas w="1900" h="1200" />
+	<Margins>0.03, 0.05, 0.12, 0.12</Margins>
+
+	<bins>
+		<mass width="0.05" min="0" max="4" />
+		<aco min="0" max="1.0" width="0.01" />
+		<asym min="0" max="1.0" width="0.001" />
+	</bins>
+
+	<Transform>
+
+		<Projection axis="y" save_as="hpt0" name="ulsid2" x1="0.4" x2="0.76" />
+		<Projection axis="y" save_as="hpt1" name="ulsid2" x1="0.76" x2="1.2" />
+		<Projection axis="y" save_as="hpt2" name="ulsid2" x1="1.2" x2="2.6" />
+
+		<Projection axis="y" save_as="hrap0" name="data/rapid2" x1="0.4" x2="0.76" />
+		<Projection axis="y" save_as="hrap1" name="data/rapid2" x1="0.76" x2="1.2" />
+		<Projection axis="y" save_as="hrap2" name="data/rapid2" x1="1.2" x2="2.6" />
+
+		<Projection axis="y" save_as="hpt20" name="pt2id2" x1="0.4" x2="0.76" />
+		<Projection axis="y" save_as="hpt21" name="pt2id2" x1="0.76" x2="1.2" />
+		<Projection axis="y" save_as="hpt22" name="pt2id2" x1="1.2" x2="2.6" />
+
+
+		<Projection axis="y" save_as="haco0" name="aco" x1="0.4" x2="0.76" />
+		<Projection axis="y" save_as="haco1" name="aco" x1="0.76" x2="1.2" />
+		<Projection axis="y" save_as="haco2" name="aco" x1="1.2" x2="2.6" />
+
+		<Projection axis="y" save_as="hasym0" name="asym" x1="0.4" x2="0.76" />
+		<Projection axis="y" save_as="hasym1" name="asym" x1="0.76" x2="1.2" />
+		<Projection axis="y" save_as="hasym2" name="asym" x1="1.2" x2="2.6" />
+
+		<Projection axis="x" save_as="hmass" name="data/ulsid2" y1="0" y2="0.15"/>
+	</Transform>
+
+	<Transform>
+		<Normalize save_as="hnrap0" name="hrap0" />
+		<Normalize save_as="hnrap1" name="hrap1" />
+		<Normalize save_as="hnrap2" name="hrap2" />
+
+		<Normalize save_as="snrap0" name="sim/y_m0" />
+		<Normalize save_as="snrap1" name="sim/y_m1" />
+		<Normalize save_as="snrap2" name="sim/y_m2" />
+
+		<Scale name="hnrap1" factor="0.1" />
+		<Scale name="snrap1" factor="0.1" />
+		
+		<Scale name="hnrap2" factor="0.01" />
+		<Scale name="snrap2" factor="0.01" />
+
+
+		<Normalize save_as="hnpt0" name="hpt0" x1="0.03" x2="0.1" />
+		<Normalize save_as="hnpt1" name="hpt1" x1="0.03" x2="0.1" />
+		<Normalize save_as="hnpt2" name="hpt2" x1="0.03" x2="0.1" />
+
+		<Normalize save_as="snpt0" name="sim/pT_m0" x1="0.03" x2="0.1" />
+		<Normalize save_as="snpt1" name="sim/pT_m1" x1="0.03" x2="0.1" />
+		<Normalize save_as="snpt2" name="sim/pT_m2" x1="0.03" x2="0.1" />
+
+		<Scale name="hnpt0" factor="100" />
+		<Scale name="snpt0" factor="100" />
+
+		<Scale name="hnpt1" factor="1" />
+		<Scale name="snpt1" factor="1" />
+		
+		<Scale name="hnpt2" factor="0.1" />
+		<Scale name="snpt2" factor="0.1" />
+
+		<!-- Acoplanarity -->
+		<Rebin save_as="haco0rb" name="haco0" bins_x="bins.aco" />
+		<Rebin save_as="haco1rb" name="haco1" bins_x="bins.aco" />
+		<Rebin save_as="haco2rb" name="haco2" bins_x="bins.aco" />
+
+		<Normalize save_as="hnaco0" name="haco0rb" x1="0.02" x2="0.1" />
+		<Normalize save_as="hnaco1" name="haco1rb" x1="0.02" x2="0.1" />
+		<Normalize save_as="hnaco2" name="haco2rb" x1="0.01" x2="0.3" />
+
+
+		<Rebin save_as="saco0rb" name="sim/aco_m0" bins_x="bins.aco" />
+		<Rebin save_as="saco1rb" name="sim/aco_m1" bins_x="bins.aco" />
+		<Rebin save_as="saco2rb" name="sim/aco_m2" bins_x="bins.aco" />
+
+		<Normalize save_as="snaco0" name="saco0rb" x1="0.02" x2="0.1" />
+		<Normalize save_as="snaco1" name="saco1rb" x1="0.02" x2="0.1" />
+		<Normalize save_as="snaco2" name="saco2rb" x1="0.01" x2="0.3" />
+
+		<Scale name="hnaco0" factor="100" />
+		<Scale name="snaco0" factor="100" />
+
+		<Scale name="hnaco1" factor="1" />
+		<Scale name="snaco1" factor="1" />
+		
+		<Scale name="hnaco2" factor="0.01" />
+		<Scale name="snaco2" factor="0.01" />
+
+		<!-- Asymmetry -->
+		<Rebin save_as="hasym0rb" name="hasym0" bins_x="bins.asym" />
+		<Rebin save_as="hasym1rb" name="hasym1" bins_x="bins.asym" />
+		<Rebin save_as="hasym2rb" name="hasym2" bins_x="bins.asym" />
+
+		<Normalize save_as="hnasym0" name="hasym0rb" x1="0.05" x2="0.2" />
+		<Normalize save_as="hnasym1" name="hasym1rb" x1="0.05" x2="0.2" />
+		<Normalize save_as="hnasym2" name="hasym2rb" x1="0.02" x2="0.1" />
+
+
+		<Rebin save_as="sasym0rb" name="sim/asym_m0" bins_x="bins.asym" />
+		<Rebin save_as="sasym1rb" name="sim/asym_m1" bins_x="bins.asym" />
+		<Rebin save_as="sasym2rb" name="sim/asym_m2" bins_x="bins.asym" />
+
+		<Normalize save_as="snasym0" name="sasym0rb" x1="0.05" x2="0.2" />
+		<Normalize save_as="snasym1" name="sasym1rb" x1="0.05" x2="0.2" />
+		<Normalize save_as="snasym2" name="sasym2rb" x1="0.02" x2="0.1" />
+
+		<Scale name="hnasym0" factor="100" />
+		<Scale name="snasym0" factor="100" />
+
+		<Scale name="hnasym1" factor="1" />
+		<Scale name="snasym1" factor="1" />
+		
+		<Scale name="hnasym2" factor="0.001" />
+		<Scale name="snasym2" factor="0.001" />
+
+		<!-- pT^2 -->
+		<Normalize save_as="hnpt20" name="hpt20" x1="0.002" x2="0.007"  />
+		<Normalize save_as="hnpt21" name="hpt21" x1="0.002" x2="0.007"  />
+		<Normalize save_as="hnpt22" name="hpt22" x1="0.002" x2="0.007"  />
+
+		<Normalize save_as="snpt20" name="sim/pT2_m0" x1="0.002" x2="0.007"  />
+		<Normalize save_as="snpt21" name="sim/pT2_m1" x1="0.002" x2="0.007"  />
+		<Normalize save_as="snpt22" name="sim/pT2_m2" x1="0.002" x2="0.007"  />
+
+		<Scale name="hnpt20" factor="100" />
+		<Scale name="snpt20" factor="100" />
+
+		<Scale name="hnpt21" factor="1" />
+		<Scale name="snpt21" factor="1" />
+		
+		<Scale name="hnpt22" factor="0.01" />
+		<Scale name="snpt22" factor="0.01" />
+
+		<Rebin save_as="hmassrb" name="hmass" bins_x="bins.mass"/>
+		<Rebin save_as="smassrb" name="sim/mass" bins_x="bins.mass"/>
+
+		<Normalize save_as="hnmass" name="hmassrb" x1="0.5" x2="2.6"  />
+		<Normalize save_as="snmass" name="smassrb" x1="0.5" x2="2.6"  />
+
+	</Transform>
+
+	<Transform>
+		<!-- <Clone save_as="hnrap0rb" name="hnrap0" x1="-1.1" x2="1.1" /> -->
+		<Divide save_as="ratio_snrap0" nameA="snrap0" nameB="hnrap0" />
+		<Divide save_as="ratio_snrap1" nameA="snrap1" nameB="hnrap1" />
+		<Divide save_as="ratio_snrap2" nameA="snrap2" nameB="hnrap2" />
+
+		<Divide save_as="ratio_snpt0" nameA="snpt0" nameB="hnpt0" />
+		<Divide save_as="ratio_snpt1" nameA="snpt1" nameB="hnpt1" />
+		<Divide save_as="ratio_snpt2" nameA="snpt2" nameB="hnpt2" />
+
+		<Divide save_as="ratio_snpt20" nameA="snpt20" nameB="hnpt20" />
+		<Divide save_as="ratio_snpt21" nameA="snpt21" nameB="hnpt21" />
+		<Divide save_as="ratio_snpt22" nameA="snpt22" nameB="hnpt22" />
+
+		<Divide save_as="ratio_mass" nameA="snmass" nameB="hnmass" />
+
+	</Transform>
+
+
+	<Plot>
+		<StatBox v="0" />
+		<Axes lsx="0, 3.5, 300" lsy="0, 1, 100" min="5e-6" max="3" x-title="M_{ee} (GeV/c^{2})" y-title="dN/dM_{ee} (GeV/c^{2})^{-1} arb. norm. "/>
+		<Histo name="snmass" draw="same he" line-color="#F00" logy="1" />
+		<Histo name="hnmass" draw="same pe" marker-style="8" marker-size="3" marker-color="#000" line-color="#000" />
+
+		
+		<Legend fill-style="0" border-size="0">
+			<Position pos="top right" padding="0.01, 0.01, 0, 0" />
+			<Entry name="snmass" title="STARLight" />
+			<Entry name="hnmass" title="@title:{mod}" opt="pe"/>
+		</Legend>
+
+		<Export url="{mod}_plot_mass.pdf" />
+
+	</Plot>
+
+	<Plot>
+		<StatBox v="0" />
+		<Axes lsx="-1.2, 1.2, 300" lsy="0, 1, 100" min="5e-6" max="3" x-title="Pair Rapidity Y^{ee}" y-title="dN/dY^{ee} arb. norm. "/>
+		<Histo name="snrap0" draw="same he" line-color="#F00" logy="1" />
+		<Histo name="hnrap0" draw="same pe" marker-style="8" marker-size="3" marker-color="#000" line-color="#000" />
+
+		<Histo name="snrap1" draw="same he" line-color="#F00" logy="1" />
+		<Histo name="hnrap1" draw="same pe" marker-style="8" marker-size="3" marker-color="#000" line-color="#000" />
+
+		<Histo name="snrap2" draw="same he" line-color="#F00" logy="1" />
+		<Histo name="hnrap2" draw="same pe" marker-style="8" marker-size="3" marker-color="#000" line-color="#000" />
+
+		<Legend fill-style="0" border-size="0">
+			<Position pos="top right" padding="0.01, 0.01, 0, 0" />
+			<Entry name="snrap0" title="STARLight" />
+			<Entry name="hnrap0" title="@title:{mod}" opt="pe"/>
+		</Legend>
+
+		<Export url="{mod}_plot_rap.pdf" />
+
+	</Plot>
+
+	<Plot>
+		<StatBox v="0" />
+		<Axes lsx="0, 0.2, 300" lsy="1e-6, 1000, 100"  x-title="1 - |#Delta #phi|/#pi" y-title=" arb. norm. " logy="1" />
+		
+		<Histo name="snaco0" draw="same he" line-color="#F00" logy="1" />
+		<Histo name="hnaco0" draw="same pe" marker-style="8" marker-size="3" marker-color="#000" line-color="#000" />
+
+		<Histo name="snaco1" draw="same he" line-color="#F00" logy="1" />
+		<Histo name="hnaco1" draw="same pe" marker-style="8" marker-size="3" marker-color="#000" line-color="#000" />
+
+		<Histo name="snaco2" draw="same he" line-color="#F00" logy="1" />
+		<Histo name="hnaco2" draw="same pe" marker-style="8" marker-size="3" marker-color="#000" line-color="#000" />
+
+		<Legend fill-style="0" border-size="0">
+			<Position pos="top right" padding="0.01, 0.01, 0, 0" />
+			<Entry name="snaco0" title="STARLight" />
+			<Entry name="hnaco0" title="@title:{mod}" opt="pe"/>
+		</Legend>
+
+		<Export url="{mod}_plot_aco.pdf" />
+
+	</Plot>
+
+
+	<Plot>
+		<StatBox v="0" />
+		<Axes lsx="0, 0.2, 300" lsy="1e-6, 1000, 100"  x-title="A = ( p_{T}^{+} - p_{T}^{-} ) / ( p_{T}^{+} + p_{T}^{-} )" y-title=" arb. norm. " logy="1" />
+		
+		<Histo name="snasym0" draw="same he" line-color="#F00" logy="1" />
+		<Histo name="hnasym0" draw="same pe" marker-style="8" marker-size="3" marker-color="#000" line-color="#000" />
+
+		<Histo name="snasym1" draw="same he" line-color="#F00" logy="1" />
+		<Histo name="hnasym1" draw="same pe" marker-style="8" marker-size="3" marker-color="#000" line-color="#000" />
+
+		<Histo name="snasym2" draw="same he" line-color="#F00" logy="1" />
+		<Histo name="hnasym2" draw="same pe" marker-style="8" marker-size="3" marker-color="#000" line-color="#000" />
+
+		<Legend fill-style="0" border-size="0">
+			<Position pos="top right" padding="0.01, 0.01, 0, 0" />
+			<Entry name="snasym0" title="STARLight" />
+			<Entry name="hnasym0" title="@title:{mod}" opt="pe"/>
+		</Legend>
+
+		<Export url="{mod}_plot_asym.pdf" />
+
+	</Plot>
+
+	<Plot>
+		<StatBox v="0" />
+		<Axes lsx="0, 0.3, 300" lsy="0, 1, 100" min="5e-6" max="300" x-title="Pair Transverse Momentum p_{T}^{ee} (GeV/c)" y-title="dN/dp_{T}^{ee} (GeV/c)^{-1} arb. norm. "/>
+		<Histo name="snpt0" draw="same he" line-color="#F00" logy="1" />
+		<Histo name="hnpt0" draw="same pe" marker-style="8" marker-size="3" marker-color="#000" line-color="#000" />
+
+		<Histo name="snpt1" draw="same he" line-color="#F00" logy="1" />
+		<Histo name="hnpt1" draw="same pe" marker-style="8" marker-size="3" marker-color="#000" line-color="#000" />
+
+		<Histo name="snpt2" draw="same he" line-color="#F00" logy="1" />
+		<Histo name="hnpt2" draw="same pe" marker-style="8" marker-size="3" marker-color="#000" line-color="#000" />
+
+		<Legend fill-style="0" border-size="0">
+			<Position pos="top right" padding="0.01, 0.01, 0, 0" />
+			<Entry name="snpt0" title="STARLight" />
+			<Entry name="hnpt0" title="@title:{mod}" opt="pe"/>
+		</Legend>
+
+		<Export url="{mod}_plot_pT.pdf" />
+
+	</Plot>
+
+	<Plot>
+		<StatBox v="0" />
+		<Axes lsx="0, 0.03, 300" lsy="0, 1, 100" min="5e-7" max="300" x-title="-t #approx p_{T}^{2} (GeV/c)" y-title="dN/dp_{T}^{2}  arb. norm. "/>
+		<Histo name="snpt20" draw="same he" line-color="#F00" logy="1" />
+		<Histo name="hnpt20" draw="same pe" marker-style="8" marker-size="2" marker-color="#000" line-color="#000" />
+
+		<Histo name="snpt21" draw="same he" line-color="#F00" logy="1" />
+		<Histo name="hnpt21" draw="same pe" marker-style="8" marker-size="2" marker-color="#000" line-color="#000" />
+
+		<Histo name="snpt22" draw="same he" line-color="#F00" logy="1" />
+		<Histo name="hnpt22" draw="same pe" marker-style="8" marker-size="2" marker-color="#000" line-color="#000" />
+
+		<Legend fill-style="0" border-size="0">
+			<Position pos="top right" padding="0.01, 0.01, 0, 0" />
+			<Entry name="snpt20" title="STARLight" />
+			<Entry name="hnpt20" title="@title:{mod}" opt="pe"/>
+		</Legend>
+
+		<Export url="{mod}_plot_pT2.pdf" />
+
+	</Plot>
+
+	
+
+</config>
