@@ -4,3 +4,4 @@
 *.root
 *.pdf
 *.pcm
+bin/pico.app

@@ -10,6 +10,8 @@ using namespace jdb;
 #include <exception>
 
 #include "PairDstMaker/PairDstMaker.h"
+#include "STARLightAna.h"
+
 
 
 #define LOGURU_IMPLEMENTATION 1
@@ -21,6 +23,7 @@ int main( int argc, char* argv[] ) {
 	Logger::setGlobalLogLevel( "none" );
 
 	TaskFactory::registerTaskRunner<PairDstMaker>( "PairDstMaker" );
+	TaskFactory::registerTaskRunner<STARLightAna>( "STARLightAna" );
 
 
 	TaskEngine engine( argc, argv, "PairDstMaker" );

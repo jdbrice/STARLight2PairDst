@@ -10,7 +10,7 @@
 		</input>
 
 		<output>
-			<TFile url="slim_pair_dst_STARLight_{mod}.root" />
+			<TFile url="star_pair_dst_STARLight_{mod}_massGT1.root" />
 		</output>
 	</PairDstMaker>
 </config>

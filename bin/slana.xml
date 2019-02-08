@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<Task name="STARLightAna" type="STARLightAna" config="" nodePath="STARLightAna"  />
+	
+	<STARLightAna>
+		<EventLoop progress="true" />
+		
+		<input>
+			<dst treeName="PairDst" url="/Users/jdb/bnl/work/upc/STARLight2PairDst/bin/slim_pair_dst_STARLight_AuAu.root"  maxFiles="-1" />
+		</input>
+
+		<output>
+			<TFile url="STARLight_AuAu.root" />
+		</output>
+
+		<histograms>
+			<Histo name="w3costhetaid2" title=";M_{ee} (GeV/c^{2}); costheta" bins_x="bins.mass" bins_y="bins.costheta" />
+		</histograms>
+	</STARLightAna>
+
+
+	<bins>
+		<events min="0" max="10" width="1"/>
+		<mass min="0" max="4" width="0.001" />
+		<pt min="0" max="2.0" width="0.001" />
+		<pt2 min="0" max="0.5" width="0.0001" />
+		<aco min="0" max="1.0" width="0.001" />
+		<asym min="0" max="1.0" width="0.001" />
+		<zdc min="0" max="1200" width="5" />
+		<!-- <pt2>
+			0.0000, 0.0010, 0.0020, 0.0030, 0.0040, 0.0050, 0.0060, 0.0070, 0.0080, 0.0090, 
+			0.0100, 0.0200, 0.0300, 0.0400, 0.0500, 0.0600, 0.0700, 0.0800, 0.0900,
+			0.1000, 0.2000, 0.3000, 0.4000, 0.5000
+		</pt2> -->
+
+		<massSlice> 0.4, 0.76, 1.2, 2.6 </massSlice>
+		<rap min="-2.0" max="2.0" width="0.1" />
+		<p min="-3.0" max="3.0" width="0.005" />
+		<pp min="0.0" max="2.0" width="0.01" />
+		<dedx min="-15.0" max="15.0" width="0.005" />
+		<chi min="0" max="200.0" width="0.1" />
+		<costheta min="0" max="1.0" width="0.05" />
+
+		<deltaTof min="-15" max="15" width="0.01" />
+		<deltaTofe min="-50" max="50" width="0.01" />
+		<deltaLen min="-50" max="50" width="0.01" />
+		<deltaPhi min="-4" max="4" width="0.05" />
+	</bins>
+
+
+</config>

@@ -49,6 +49,9 @@ protected:
 	BranchWriter<FemtoPair> _fpw;
 	FemtoPair _pair; 
 
+	int maxEvents;
+	bool starAcc = false;
+
 	double daughterMass = 0.0005109989461;
 
 public:
@@ -65,7 +68,10 @@ public:
 		this->_pairDst = new TTree( "PairDst", "" );
 		this->_fpw.createBranch( this->_pairDst, "Pairs" );
 
+
+		maxEvents = config.get<int>( "maxEvents", -1 );
 		daughterMass = config.get<double>( "daughterMass", 0.0005109989461 );
+		starAcc = config.get<bool>( "starAcc", false ); // apply STAR acceptance?
 
 		LOG_F( INFO, "Daughter Mass = %f", daughterMass );
 
@@ -169,6 +175,7 @@ protected:
 		LOG_F( INFO, "Reading from %s", starlight.c_str() );
 		ifstream infile( starlight.c_str() );
 
+		int iEvent =0;
 		while (infile) {
 			string sEvent, sVertex, sTrack1, sTrack2;
 			if (!getline( infile, sEvent )) break;
@@ -222,11 +229,25 @@ protected:
 			this->_pair.mPhi      = lv.Phi();
 			this->_pair.mRapidity = lv.Rapidity();
 
+			if ( starAcc ){
+				if ( lv1.Pt() < 0.100 || fabs(lv1.Eta())>1.0 )
+					continue;
+				if ( lv2.Pt() < 0.100 || fabs(lv2.Eta())>1.0 )
+					continue;
+				if ( fabs(lv.Rapidity())>1.0 )
+					continue;
+				if ( fabs(lv.M())<1.0 )
+					continue;
+			}
+
 
 			this->_fpw.set( this->_pair );
 			this->_pairDst->Fill();
 
+			iEvent++;
 
+			if ( iEvent >= maxEvents && maxEvents > 0 )
+				break;
 
 		}
 	}
